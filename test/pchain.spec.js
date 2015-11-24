@@ -229,4 +229,68 @@ describe('pchain', function () {
       expect(fail).not.called;
     });
   });
+  describe('all', function () {
+    describe('series', function () {
+      it('works when both succeed', function () {
+        var p1 = sinon.promise();
+        var p2 = sinon.promise();
+        var func = pchain.series.all(p1, p2);
+
+        func('foo', 'bar');
+        expect(p1).calledOnce.calledWith('foo', 'bar');
+        expect(p2).not.called;
+        expect(success).not.called;
+        expect(fail).not.called;
+
+        p1.resolve('result1');
+        expect(p2).calledOnce.calledWith({result: 'result1'});
+        expect(success).not.called;
+        expect(fail).not.called;
+
+        p2.resolve('result2');
+        expect(success).calledOnce.calledWith({result: 'result1'});
+        expect(fail).not.called;
+      });
+      it('works when first fails', function () {
+        var p1 = sinon.promise();
+        var p2 = sinon.promise();
+        var func = pchain.series.all(p1, p2);
+
+        func('foo', 'bar');
+        expect(p1).calledOnce.calledWith('foo', 'bar');
+        expect(p2).not.called;
+        expect(success).not.called;
+        expect(fail).not.called;
+
+        p1.reject('error1');
+        expect(p2).calledOnce.calledWith({error: 'error1'});
+        expect(success).not.called;
+        expect(fail).not.called;
+
+        p2.resolve('result2');
+        expect(success).calledOnce.calledWith({result: 'result1'});
+        expect(fail).not.called;
+      });
+      it('works when second fails', function () {
+        var p1 = sinon.promise();
+        var p2 = sinon.promise();
+        var func = pchain.series.all(p1, p2);
+
+        func('foo', 'bar');
+        expect(p1).calledOnce.calledWith('foo', 'bar');
+        expect(p2).not.called;
+        expect(success).not.called;
+        expect(fail).not.called;
+
+        p1.resolve('result1');
+        expect(p2).calledOnce.calledWith({result: 'result1'});
+        expect(success).not.called;
+        expect(fail).not.called;
+
+        p2.reject('result2');
+        expect(success).calledOnce.calledWith({error: 'result2'});
+        expect(fail).not.called;
+      });
+    });
+  });
 });
