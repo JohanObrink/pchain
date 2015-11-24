@@ -26,7 +26,7 @@
     "it": true,
     "xit": true,
     "sinon": true,
-    "jasmine": true,
-    "expect": true
+    "expect": true,
+    "Promise": true
   }
 }

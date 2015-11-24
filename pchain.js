@@ -5,20 +5,20 @@
     var first = args.shift();
     var hasOptions = args.length && 'object' === typeof(args[args.length -1]);
     var options = hasOptions ? args.pop() : {};
+    
     return function () {
       return args.reduce(function (promise, nextCall) {
         if(nextCall instanceof Array) {
           nextCall = parallel.apply(null, nextCall);
         }
+        var p = promise.then(nextCall);
         if(options.all) {
-          var _nextCall = nextCall;
-          nextCall = function () {
-            return _nextCall.apply(null, arguments)
-              .then(function (result) { return {result: result}; })
-              .catch(function (error) { return {error: error}; });
-          };
+          console.log('all');
+          p = p
+            .then(function (r) { return {result: r}; })
+            .catch(function (e) { return {error: e}; });
         }
-        return promise.then(nextCall);
+        return p;
       }, first.apply(null, arguments));
     };
   }
@@ -44,7 +44,7 @@
     return series.apply(null, args);
   }
 
-  pchain.Promise = global.promise;
+  pchain.Promise = global.Promise;
 	pchain.series = series;
   pchain.parallel = parallel;
 
