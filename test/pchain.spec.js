@@ -3,7 +3,7 @@ var sinon = require('sinon'),
   expect = chai.expect,
   sinonPromise = require('sinon-promise'),
 
-  pchain = require(process.cwd() + '/lib/pchain');
+  pchain = require(process.cwd() + '/pchain');
 
 chai.use(require('sinon-chai'));
 sinonPromise(sinon);

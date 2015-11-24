@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 var running = {};
 
 gulp.task('jshint', function () {
-  running.jshint = ['gulpfile.js', 'lib/**/*.js', 'test/**/*.js'];
+  running.jshint = ['gulpfile.js', 'pchain.js', 'test/**/*.js'];
   return gulp.src(running.jshint)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
