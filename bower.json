@@ -1,0 +1,21 @@
+{
+  "name": "pchain",
+  "version": "0.0.1",
+  "authors": [
+    "Johan Öbrink <johan.obrink@gmail.com>"
+  ],
+  "description": "Promise chain. Composes your promises.",
+  "main": "pchain.js",
+  "keywords": [
+    "promises",
+    "compose"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

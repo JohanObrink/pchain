@@ -1,0 +1,25 @@
+{
+  "name": "pchain",
+  "version": "0.0.1",
+  "description": "Promise chain. Composes your promises.",
+  "main": "lib/pchain",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "promises",
+    "compose"
+  ],
+  "author": "Johan Öbrink <johan.obrink@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-mocha": "^2.2.0",
+    "jshint-stylish": "^2.1.0",
+    "sinon": "^1.17.2",
+    "sinon-chai": "^2.8.0",
+    "sinon-promise": "^0.1.3"
+  }
+}
